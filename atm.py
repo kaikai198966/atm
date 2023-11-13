@@ -6,7 +6,7 @@ import utils  # may be omitted, also omit line 9
 
 initializers.check_files.default()  # check if files exist, create files with default content if not
 
-utils.clear_console() # NOTE: may be omitted
+utils.clear_console()  # NOTE: may be omitted
 
 while True:
     print(f"Welcome to {env.bank_name}")
@@ -19,11 +19,11 @@ while True:
         print("User not found\n")
         continue
 
-    if password is not user["password"]:
+    if not password == user["password"]:
         print("Incorrect password\n")
         continue
 
-    if user["type"] is "adm":
+    if user["type"] == "adm":
         import ui.admin
 
         while True:
@@ -68,7 +68,7 @@ while True:
                     print("Invalid input.")
                     continue
 
-    if user["type"] is "usr":
+    if user["type"] == "usr":
         import ui.user
 
         while True:
