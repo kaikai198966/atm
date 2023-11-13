@@ -83,6 +83,10 @@ def get_account(user_id):
     accounts = get_all_accounts()  # get all accounts
     return accounts.get(user_id)  # return the account with the given user_id
 
+def get_transactions(account_number):
+    accounts = get_all_transactions()  # get all transaction
+    return accounts.get(account_number)  # return the account with the given transaction
+
 
 def append_user(
     user_data={
