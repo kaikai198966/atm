@@ -49,16 +49,16 @@ elif os.path.exists(files["users"]):
 
 if not os.path.exists(files["accounts"]):
     print("Accounts file not found. Creating file...")
-    open(files["accounts"], "wt").close()
-    file.write(accounts)
+    with open(files["accounts"], "wt") as file:
+        file.write(accounts)
 elif os.path.exists(files["accounts"]):
     with open(files["accounts"], "at") as file:
         file.write(accounts)
 
 if not os.path.exists(files["transaction_details"]):
     print("Transaction Details file not found. Creating file...")
-    open(files["transaction_details"], "wt").close()
-    file.write(transaction_detail)
+    with open(files["transaction_details"], "wt") as file:
+        file.write(transaction_detail)
 elif os.path.exists(files["transaction_details"]):
     with open(files["transaction_details"], "at") as file:
         file.write(transaction_detail)
