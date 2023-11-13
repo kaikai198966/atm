@@ -13,6 +13,9 @@ while True:
     username = input("Username: ")
     password = getpass.getpass("Password: ")
 
+    username = "maestro@gmail.com"  # NOTE: OMIT WHEN DEPLOYED
+    password = "Abc1234$"  # NOTE: OMIT WHEN DEPLOYED
+
     user = controllers.api.get_user(username)
 
     if not user:
@@ -23,6 +26,8 @@ while True:
         print("Incorrect password\n")
         continue
 
+    print("\n")
+    
     if user["type"] == "adm":
         import ui.admin
 
