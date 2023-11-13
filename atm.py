@@ -15,12 +15,14 @@ while True:
 
     user = controllers.api.get_user(username)
 
-    if password is not user[password]:
-        print("Incorrect password\n")
-        continue
     if not user:
         print("User not found\n")
         continue
+
+    if password is not user[password]:
+        print("Incorrect password\n")
+        continue
+
     if user["type"] is "adm":
         import ui.admin
 
