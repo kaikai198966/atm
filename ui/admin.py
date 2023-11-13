@@ -3,6 +3,12 @@ import re
 import controllers.api as api
 import utils
 
+def is_user_existing(user_id):
+    user = api.get_user(user_id)
+    if user:
+        print("User already exists. Please try again.\n")
+        return True
+    return False
 
 def credentials_input_is_valid(email, password):
     password_pattern = (
@@ -32,8 +38,7 @@ def create_admin_account():
         if not credentials_input_is_valid(new_user_id, password):
             return
 
-        if api.get_user(new_user_id):  # TODO: Wrap in Function
-            print("User already exists. Please try again.\n")
+        if is_user_existing(new_user_id):
             return
 
         api.append_user(
@@ -62,9 +67,8 @@ def create_depositor_account():
 
         if not credentials_input_is_valid(user_id, password):
             return
-
-        if api.get_user(user_id):  # TODO: Wrap in Function
-            print("User already exists. Please try again.\n")
+        
+        if is_user_existing(user_id):
             return
 
         if initial_deposit < 2000:
