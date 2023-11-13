@@ -5,10 +5,12 @@ import controllers.fs as fs  # import the file manager module
 def get_all_users():
     users = {}  # placeholder dictionary for all users
 
+    file = fs.read(env.files["users"]).split("\n")
+
     # read the users file and loop through it
-    for line in fs.read(env.files["users"]):  # loop through the file
+    for line in file:  # loop through the file
         # one line in the file is one user's data
-        line = line.strip() 
+        line = line.strip()
 
         # split the pipe-separated data into a list
         user_id, password, user_type, status, date_created = line.split("|")
@@ -28,8 +30,10 @@ def get_all_users():
 def get_all_accounts():
     accounts = {}  # placeholder dictionary for all accounts
 
+    file = fs.read(env.files["accounts"]).split("|").split("\n")
+
     # read the accounts file and loop through it
-    for line in fs.read(env.files["accounts"]):  # loop through the file
+    for line in file:  # loop through the file
         # one line in the file is one account's data
         line = line.strip()  # remove the trailing spaces
 
@@ -58,8 +62,10 @@ def get_all_accounts():
 def get_all_transactions():
     transactions = {}  # placeholder dictionary for all transactions
 
+    file = fs.read(env.files["transaction_details"]).split("\n")
+
     # read the transactions file and loop through it
-    for line in fs.read(env.files["transaction_details"]):
+    for line in file:
         # one line in the file is one transaction made
         line = line.strip()  # remove the trailing spaces
         (tran_date, act_num, tran_code, tran_amount) = line.split("|")
@@ -82,6 +88,7 @@ def get_user(user_id):
 def get_account(user_id):
     accounts = get_all_accounts()  # get all accounts
     return accounts.get(user_id)  # return the account with the given user_id
+
 
 def get_transactions(account_number):
     accounts = get_all_transactions()  # get all transaction
@@ -130,6 +137,7 @@ def append_account(
 
     return data  # return the dictionary of the account
 
+
 def append_to_account(
     account_data={
         "user_id": None,
@@ -140,9 +148,9 @@ def append_to_account(
         "last_transaction_details": None,
     }
 ):
-    accounts = get_all_accounts() # get all accounts
-    accounts[account_data["user_id"]] # modify the account with the given user_id
-    set_accounts(accounts) # overwrite the file with the new data
+    accounts = get_all_accounts()  # get all accounts
+    accounts[account_data["user_id"]]  # modify the account with the given user_id
+    set_accounts(accounts)  # overwrite the file with the new data
 
     return account_data  # return the dictionary of the accountusers
 
@@ -178,4 +186,6 @@ def append_transaction_details(
     +transaction_data["transaction_code"] + "|"
     +transaction_data["transaction_amount"] + "\n"
 
-    fs.append(env.files["transaction_details"], data)  # overwrite the file with the new data
+    fs.append(
+        env.files["transaction_details"], data
+    )  # overwrite the file with the new data
