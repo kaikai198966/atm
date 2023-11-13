@@ -10,7 +10,7 @@ def create(file_path):
         os.makedirs(directory) # create the directory
         open(f'{directory}/{file}', "w").close() # create the file
 
-def write(path, content): # this will append contents to a file
+def append(path, content): # this will append contents to a file
     # if the file does not exist, it will create it
 
     # file = open(path, "at") # open the file in append text mode
@@ -18,6 +18,16 @@ def write(path, content): # this will append contents to a file
     # file.close() # close the file
 
     with open(path, "at") as file: # open the file in append text mode
+        file.write(content) # write the content to the file
+
+def write(path, content): # this will overwrite the contents of a file
+    # if the file does not exist, it will create it
+
+    # file = open(path, "wt") # open the file in write text mode
+    # file.write(content) # write the content to the file
+    # file.close() # close the file
+
+    with open(path, "wt") as file: # open the file in write text mode
         file.write(content) # write the content to the file
 
 def read(path):
