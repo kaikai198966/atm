@@ -1,5 +1,5 @@
 import env  # import the environment variables module
-import fs  # import the file manager module
+import controllers.fs as fs  # import the file manager module
 
 # read the users file and return a dictionary of all users
 def get_all_users():
