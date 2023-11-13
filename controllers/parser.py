@@ -76,12 +76,12 @@ def get_all_transactions():
 
 def get_user(user_id):
     users = get_all_users()  # get all users
-    return users[user_id]  # return the user with the given user_id
+    return users.get(user_id)  # return the user with the given user_id
 
 
 def get_account(user_id):
     accounts = get_all_accounts()  # get all accounts
-    return accounts[user_id]  # return the account with the given user_id
+    return accounts.get(user_id)  # return the account with the given user_id
 
 
 def append_user(
