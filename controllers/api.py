@@ -30,7 +30,7 @@ def get_all_users():
 def get_all_accounts():
     accounts = {}  # placeholder dictionary for all accounts
 
-    file = fs.read(env.files["accounts"]).split("|").split("\n")
+    file = fs.read(env.files["accounts"]).split("\n")
 
     # read the accounts file and loop through it
     for line in file:  # loop through the file
