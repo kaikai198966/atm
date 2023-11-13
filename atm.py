@@ -90,13 +90,13 @@ while True:
 
             match option:
                 case "b":
-                    ui.user.check_for_balance(user_id=username, password=password)
+                    ui.user.check_for_balance(username)
                 case "d":
-                    ui.user.make_deposit(user_id=username, password=password)
+                    ui.user.make_deposit(username)
                 case "w":
-                    ui.user.make_withdrawal(user_id=username, password=password)
+                    ui.user.make_withdrawal(username)
                 case "r":
-                    ui.user.report_transaction(user_id=username)
+                    ui.user.report_transaction(username)
                 case "q":
                     exit(0)
 

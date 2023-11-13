@@ -22,7 +22,7 @@ def check_for_balance(user_id):
     print(prompt)
 
 
-def make_deposit(user_id, amount=0):
+def make_deposit(user_id):
     amount = input("Enter amount to Deposit: ")
     amount = float(amount)
     if amount < 0:
@@ -50,7 +50,7 @@ def make_deposit(user_id, amount=0):
     print(prompt)
 
 
-def make_withdrawal(user_id, amount=0):
+def make_withdrawal(user_id):
     amount = input("Enter amount to Withdraw: ")
     amount = float(amount)
     if amount < 0:
