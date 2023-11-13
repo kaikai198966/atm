@@ -102,7 +102,7 @@ def append_user(
 
     fs.append(env.files["users"], data)  # overwrite the file with the new data
 
-    return data  # return the dictionary of all users
+    return data  # return the dictionary of the account
 
 
 def append_account(
@@ -124,7 +124,7 @@ def append_account(
 
     fs.append(env.files["accounts"], data)  # overwrite the file with the new data
 
-    return data  # return the dictionary of all users
+    return data  # return the dictionary of the account
 
 def append_to_account(
     account_data={
@@ -136,17 +136,11 @@ def append_to_account(
         "last_transaction_details": None,
     }
 ):
-    account = get_account(account_data["user_id"])
-    # take every values and create a pipe-separated string
-    data = account_data["user_id"] + "|"
-    +account_data["account_number"] + "|"
-    +account_data["account_name"] + "|"
-    +account_data["outstanding_balance"] + "|"
-    +account_data["last_transaction_date"] + "\n"
+    accounts = get_all_accounts() # get all accounts
+    accounts[account_data["user_id"]] # modify the account with the given user_id
+    set_accounts(accounts) # overwrite the file with the new data
 
-    fs.append(env.files["accounts"], data)  # overwrite the file with the new data
-
-    return data  # return the dictionary of all users
+    return account_data  # return the dictionary of the accountusers
 
 
 def set_accounts(accounts_data={}):
