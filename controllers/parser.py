@@ -116,7 +116,29 @@ def append_account(
     }
 ):
     # take every values and create a pipe-separated string
-    data = account_data["username"] + "|"
+    data = account_data["user_id"] + "|"
+    +account_data["account_number"] + "|"
+    +account_data["account_name"] + "|"
+    +account_data["outstanding_balance"] + "|"
+    +account_data["last_transaction_date"] + "\n"
+
+    fs.append(env.files["accounts"], data)  # overwrite the file with the new data
+
+    return data  # return the dictionary of all users
+
+def append_to_account(
+    account_data={
+        "user_id": None,
+        "account_number": None,
+        "account_name": None,
+        "outstanding_balance": None,
+        "last_transaction_date": None,
+        "last_transaction_details": None,
+    }
+):
+    account = get_account(account_data["user_id"])
+    # take every values and create a pipe-separated string
+    data = account_data["user_id"] + "|"
     +account_data["account_number"] + "|"
     +account_data["account_name"] + "|"
     +account_data["outstanding_balance"] + "|"
@@ -144,7 +166,7 @@ def set_accounts(accounts_data={}):
     fs.write(env.files["accounts"], data)  # overwrite the file with the new data
 
 
-def append_transaction_detail(
+def append_transaction_details(
     transaction_data={
         "transaction_date": None,
         "account_number": None,
