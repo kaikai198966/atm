@@ -87,8 +87,10 @@ def report_transaction(user_id):
     account = api.get_account(user_id)
     transaction = api.get_transactions(account["account_number"])
 
-    prompt = f"List of transactions for Account Number {account['account_number']}"
-    +f"from {date_range_start} to {date_range_end} are as follows:\n"
+    prompt = (
+        f"List of transactions for Account Number {account['account_number']}"
+        + f"from {date_range_start} to {date_range_end} are as follows:\n"
+    )
     print(prompt)
 
     prompt_header = (
