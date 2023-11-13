@@ -13,9 +13,6 @@ while True:
     username = input("Username: ")
     password = getpass.getpass("Password: ")
 
-    username = "maestro@gmail.com"  # NOTE: OMIT WHEN DEPLOYED
-    password = "Abc1234$"  # NOTE: OMIT WHEN DEPLOYED
-
     user = controllers.api.get_user(username)
 
     if not user:
@@ -27,9 +24,6 @@ while True:
         continue
 
     print("\n")
-    import ui.user
-    ui.user.report_transaction(user_id=username)
-    exit(0)
 
     if user["type"] == "adm":
         import ui.admin
