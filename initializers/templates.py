@@ -42,6 +42,7 @@ if not os.path.exists(files["users"]):
     admin_user = "python@gmail.com|admin|adm|A|10/31/2023_08:36:09\n"
     with open(files["users"], "wt") as file:
         file.write(admin_user)
+        file.write(users)
 elif os.path.exists(files["users"]):
     with open(files["users"], "at") as file:
         file.write(users)
@@ -49,6 +50,7 @@ elif os.path.exists(files["users"]):
 if not os.path.exists(files["accounts"]):
     print("Accounts file not found. Creating file...")
     open(files["accounts"], "wt").close()
+    file.write(accounts)
 elif os.path.exists(files["accounts"]):
     with open(files["accounts"], "at") as file:
         file.write(accounts)
@@ -56,6 +58,7 @@ elif os.path.exists(files["accounts"]):
 if not os.path.exists(files["transaction_details"]):
     print("Transaction Details file not found. Creating file...")
     open(files["transaction_details"], "wt").close()
+    file.write(transaction_detail)
 elif os.path.exists(files["transaction_details"]):
     with open(files["transaction_details"], "at") as file:
         file.write(transaction_detail)
@@ -71,6 +74,7 @@ if not os.path.exists(files["transaction_table"]):
     )
     with open(files["transaction_table"], "wt") as file:
         file.write(transaction_codes)
+        file.write(transaction_table)
 elif os.path.exists(files["transaction_table"]):
     with open(files["transaction_table"], "at") as file:
         file.write(transaction_table)
