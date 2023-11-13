@@ -1,5 +1,6 @@
 # this menu will be displayed when the type of the user is admin ("adm")
 import re
+import getpass
 import controllers.api as api
 import utils
 
@@ -33,7 +34,9 @@ def create_admin_account():
         print("Add Admin Account")
 
         new_user_id = input("Enter User ID: ")
-        password = input("Enter Password: ")
+        password = getpass.getpass("Enter Password: ")
+
+        # TODO: CONSULT KAI for repeat password
 
         if not credentials_input_is_valid(new_user_id, password):
             return
@@ -60,7 +63,7 @@ def create_depositor_account():
         account_number = input("Enter Account Number: ")
         account_name = input("Enter Account Name: ")
         user_id = input("Enter User ID: ")
-        password = input("Enter Password: ")
+        password = getpass.getpass("Enter Password: ")
         initial_deposit = input("Initial Deposit: ")
 
         initial_deposit = float(initial_deposit)
