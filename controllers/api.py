@@ -1,6 +1,7 @@
 import env  # import the environment variables module
 import controllers.fs as fs  # import the file manager module
 
+
 # read the users file and return a dictionary of all users
 def get_all_users():
     users = {}  # placeholder dictionary for all users
@@ -30,7 +31,7 @@ def get_all_users():
 def get_all_accounts():
     accounts = {}  # placeholder dictionary for all accounts
 
-    file = fs.read(env.files["accounts"]).split("\n")
+    file = fs.read(env.files["accounts"]).split("|").split("\n")
 
     # read the accounts file and loop through it
     for line in file:  # loop through the file
@@ -60,7 +61,7 @@ def get_all_accounts():
 
 
 def get_all_transactions():
-    transactions = {}  # placeholder dictionary for all transactions
+    transactions = []  # placeholder dictionary for all transactions
 
     file = fs.read(env.files["transaction_details"]).split("\n")
 
@@ -70,12 +71,14 @@ def get_all_transactions():
         line = line.strip()  # remove the trailing spaces
         (tran_date, act_num, tran_code, tran_amount) = line.split("|")
         # assign the values to the keys of the transaction's dictionary
-        transactions[act_num] = {
-            "transaction_date": tran_date,
-            "account_number": act_num,
-            "transaction_code": tran_code,
-            "transaction_amount": tran_amount,
-        }  # placeholder dictionary of an account's transactions
+        transactions.append(
+            {
+                "transaction_date": tran_date,
+                "account_number": act_num,
+                "transaction_code": tran_code,
+                "transaction_amount": tran_amount,
+            }
+        )  # placeholder dictionary of an account's transactions
 
     return transactions  # return the dictionary of ALL transactions
 
@@ -91,8 +94,13 @@ def get_account(user_id):
 
 
 def get_transactions(account_number):
-    accounts = get_all_transactions()  # get all transaction
-    return accounts.get(account_number)  # return the account with the given transaction
+    all_transactions = get_all_transactions()  # get all transaction
+    account_transactions = []
+    for transactions in all_transactions:
+        if transactions["account_number"] == account_number:
+            del transactions["account_number"]
+            account_transactions.append(transactions)
+    return account_transactions  # return the account with the given transaction
 
 
 def append_user(
