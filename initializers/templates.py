@@ -1,6 +1,12 @@
 import os
-import env
 import controllers.fs as fs
+
+files = {
+    "users": "./atm-files/users.txt",
+    "accounts": "./atm-files/accounts.txt",
+    "transaction_details": "./atm-files/tran_details.txt",
+    "transaction_table": "./atm-files/tran_table.txt",
+}
 
 transaction_detail = """11/01/2023_10:29:02|11111|new|5000
 11/02/2023_12:31:45|22222|new|10000
@@ -30,37 +36,32 @@ chk|Check Balance
 rep|Transaction Report"""
 
 
-if not os.path.exists(env.files["users"]):
+if not os.path.exists(files["users"]):
     print("Users file not found. Creating file with default content...")
     admin_user = (
-        env.master_account["username"]
-        + "|"
-        + env.master_account["password"]
-        + "|"
-        + env.master_account["status"]
-        + "|"
-        + env.master_account["created_date"]
-        + "\n"
+        "python@gmail.com|admin|adm|A|10/31/2023_08:36:09\n"
+        
+
     )
-    fs.create(env.files["users"])  # NOTE: may be omitted
+    fs.create(files["users"])  # NOTE: may be omitted
     # fs.write will create the file if it doesn't exist
-    fs.write(env.files["users"], admin_user)
-elif os.path.exists(env.files["users"]):
-    fs.append(env.files["users"], users)
+    fs.write(files["users"], admin_user)
+elif os.path.exists(files["users"]):
+    fs.append(files["users"], users)
 
-if not os.path.exists(env.files["accounts"]):
+if not os.path.exists(files["accounts"]):
     print("Accounts file not found. Creating file...")
-    fs.create(env.files["accounts"])
-elif os.path.exists(env.files["accounts"]):
-    fs.append(env.files["accounts"], accounts)
+    fs.create(files["accounts"])
+elif os.path.exists(files["accounts"]):
+    fs.append(files["accounts"], accounts)
 
-if not os.path.exists(env.files["transaction_details"]):
+if not os.path.exists(files["transaction_details"]):
     print("Transaction Details file not found. Creating file...")
-    fs.create(env.files["transaction_details"])
-elif os.path.exists(env.files["transaction_details"]):
-    fs.append(env.files["transaction_details"], transaction_detail)
+    fs.create(files["transaction_details"])
+elif os.path.exists(files["transaction_details"]):
+    fs.append(files["transaction_details"], transaction_detail)
 
-if not os.path.exists(env.files["transaction_table"]):
+if not os.path.exists(files["transaction_table"]):
     print("Transaction Table file not found. Creating file with default content...")
     transaction_codes = (
         "new|Initial Balance\n"
@@ -69,8 +70,8 @@ if not os.path.exists(env.files["transaction_table"]):
         + "chk|Check Balance\n"
         + "rep|Transaction Report\n"
     )
-    fs.create(env.files["transaction_table"])  # NOTE: may be omitted
+    fs.create(files["transaction_table"])  # NOTE: may be omitted
     # fs.write will create the file if it doesn't exist
-    fs.write(env.files["transaction_table"], transaction_codes)
-elif os.path.exists(env.files["transaction_table"]):
-    fs.append(env.files["transaction_table"], transaction_table)
+    fs.write(files["transaction_table"], transaction_codes)
+elif os.path.exists(files["transaction_table"]):
+    fs.append(files["transaction_table"], transaction_table)
