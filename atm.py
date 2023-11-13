@@ -19,7 +19,7 @@ while True:
         print("User not found\n")
         continue
 
-    if password is not user[password]:
+    if password is not user["password"]:
         print("Incorrect password\n")
         continue
 
