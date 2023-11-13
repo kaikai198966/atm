@@ -16,7 +16,7 @@ def default():
             + env.master_account["created_date"]
             + "\n"
         )
-        fs.create(env.files["users"]) # can be omitted
+        fs.create(env.files["users"]) # NOTE: may be omitted
         # fs.write will create the file if it doesn't exist
         fs.write(env.files["users"], admin_user)
 
@@ -37,6 +37,6 @@ def default():
             + "chk|Check Balance\n"
             + "rep|Transaction Report\n"
         )
-        fs.create(env.files["transaction_table"]) # can be omitted
+        fs.create(env.files["transaction_table"]) # NOTE: may be omitted
         # fs.write will create the file if it doesn't exist
         fs.write(env.files["transaction_table"], transaction_codes)

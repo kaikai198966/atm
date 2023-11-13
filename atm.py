@@ -6,7 +6,7 @@ import utils  # may be omitted, also omit line 9
 
 initializers.check_files.default()  # check if files exist, create files with default content if not
 
-utils.clear_console()  # may be omitted
+utils.clear_console() # NOTE: may be omitted
 
 while True:
     print(f"Welcome to {env.bank_name}")
