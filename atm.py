@@ -2,19 +2,19 @@ import getpass
 import controllers.api
 import initializers.check_files
 import env
-import utils # may be omitted, also omit line 9
+import utils  # may be omitted, also omit line 9
 
-initializers.check_files.default() # check if files exist, create files with default content if not
+initializers.check_files.default()  # check if files exist, create files with default content if not
 
-utils.clear_console() # may be omitted
+utils.clear_console()  # may be omitted
 
 while True:
-    print(f'Welcome to {env.bank_name}')
+    print(f"Welcome to {env.bank_name}")
     username = input("Username: ")
     password = getpass.getpass("Password: ")
 
     user = controllers.api.get_user(username)
-    
+
     if password is not user[password]:
         print("Incorrect password\n")
         continue
@@ -23,6 +23,7 @@ while True:
         continue
     if user["type"] is "adm":
         import ui.admin
+
         while True:
             prompt = (
                 f"Welcome to {env.bank_name}\n"
@@ -38,9 +39,27 @@ while True:
 
             match option:
                 case "a":
-                    ui.admin.create_admin_account()
+                    while True:
+                        ui.admin.create_admin_account()
+                        loop = input("Enter another account? (Y/N): ")
+                        match loop.strip().lower():
+                            case "y":
+                                continue
+                            case "n":
+                                break
+                            case _:
+                                print("Invalid input.\n")
                 case "d":
-                    ui.admin.create_depositor_account()
+                    while True:
+                        ui.admin.create_depositor_account()
+                        loop = input("Enter another account? (Y/N): ")
+                        match loop.strip().lower():
+                            case "y":
+                                continue
+                            case "n":
+                                break
+                            case _:
+                                print("Invalid input.\n")
                 case "q":
                     exit(0)
                 case _:
@@ -49,6 +68,7 @@ while True:
 
     if user["type"] is "usr":
         import ui.user
+
         while True:
             prompt = (
                 f"Welcome to {env.bank_name}\n"

@@ -24,18 +24,17 @@ def credentials_input_is_valid(email, password):
 
 
 def create_admin_account():
-    while True:  # TODO: Remove loop and transfer to main
         print("Add Admin Account")
 
         new_user_id = input("Enter User ID: ")
         password = input("Enter Password: ")
 
         if not credentials_input_is_valid(new_user_id, password):
-            continue
+            return
 
         if api.get_user(new_user_id):  # TODO: Wrap in Function
             print("User already exists. Please try again.\n")
-            continue
+            return
 
         api.append_user(
             {
@@ -47,18 +46,8 @@ def create_admin_account():
             }
         )
 
-        loop = input("Enter another account? (Y/N): ")
-        match loop.strip().lower():
-            case "y":
-                continue
-            case "n":
-                break
-            case _:
-                print("Invalid input.\n")
-
 
 def create_depositor_account():
-    while True:  # TODO: Remove loop and transfer to main
         timestamp = utils.timestamp()
 
         print("Add Depositor Account")
@@ -72,15 +61,15 @@ def create_depositor_account():
         initial_deposit = float(initial_deposit)
 
         if not credentials_input_is_valid(user_id, password):
-            continue
+            return
 
         if api.get_user(user_id):  # TODO: Wrap in Function
             print("User already exists. Please try again.\n")
-            continue
+            return
 
         if initial_deposit < 2000:
             print("Initial deposit must be at least 2000.\n")
-            continue
+            return
 
         api.append_user(
             {
@@ -109,12 +98,3 @@ def create_depositor_account():
                 "amount": initial_deposit,
             }
         )
-
-        loop = input("Enter another account? (Y/N): ")
-        match loop.strip().lower():
-            case "y":
-                continue
-            case "n":
-                break
-            case _:
-                print("Invalid input.\n")
