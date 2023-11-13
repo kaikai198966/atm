@@ -34,6 +34,8 @@ dep|Deposit
 chk|Check Balance
 rep|Transaction Report"""
 
+if not os.path.exists("./atm-files"):
+    os.mkdir("./atm-files")
 
 if not os.path.exists(files["users"]):
     print("Users file not found. Creating file with default content...")
