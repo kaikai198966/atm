@@ -74,7 +74,6 @@ if not os.path.exists(files["transaction_table"]):
     )
     with open(files["transaction_table"], "wt") as file:
         file.write(transaction_codes)
-        file.write(transaction_table)
 elif os.path.exists(files["transaction_table"]):
     with open(files["transaction_table"], "at") as file:
         file.write(transaction_table)
