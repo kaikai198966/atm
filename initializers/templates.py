@@ -1,5 +1,4 @@
 import os
-import controllers.fs as fs
 
 files = {
     "users": "./atm-files/users.txt",
@@ -38,28 +37,26 @@ rep|Transaction Report"""
 
 if not os.path.exists(files["users"]):
     print("Users file not found. Creating file with default content...")
-    admin_user = (
-        "python@gmail.com|admin|adm|A|10/31/2023_08:36:09\n"
-        
-
-    )
-    fs.create(files["users"])  # NOTE: may be omitted
-    # fs.write will create the file if it doesn't exist
-    fs.write(files["users"], admin_user)
+    admin_user = "python@gmail.com|admin|adm|A|10/31/2023_08:36:09\n"
+    with open(files["users"], "wt") as file:
+        file.write(admin_user)
 elif os.path.exists(files["users"]):
-    fs.append(files["users"], users)
+    with open(files["users"], "at") as file:
+        file.write(users)
 
 if not os.path.exists(files["accounts"]):
     print("Accounts file not found. Creating file...")
-    fs.create(files["accounts"])
+    open(files["accounts"], "wt").close()
 elif os.path.exists(files["accounts"]):
-    fs.append(files["accounts"], accounts)
+    with open(files["accounts"], "at") as file:
+        file.write(accounts)
 
 if not os.path.exists(files["transaction_details"]):
     print("Transaction Details file not found. Creating file...")
-    fs.create(files["transaction_details"])
+    open(files["transaction_details"], "wt").close()
 elif os.path.exists(files["transaction_details"]):
-    fs.append(files["transaction_details"], transaction_detail)
+    with open(files["transaction_details"], "at") as file:
+        file.write(transaction_detail)
 
 if not os.path.exists(files["transaction_table"]):
     print("Transaction Table file not found. Creating file with default content...")
@@ -70,8 +67,8 @@ if not os.path.exists(files["transaction_table"]):
         + "chk|Check Balance\n"
         + "rep|Transaction Report\n"
     )
-    fs.create(files["transaction_table"])  # NOTE: may be omitted
-    # fs.write will create the file if it doesn't exist
-    fs.write(files["transaction_table"], transaction_codes)
+    with open(files["transaction_table"], "wt") as file:
+        file.write(transaction_codes)
 elif os.path.exists(files["transaction_table"]):
-    fs.append(files["transaction_table"], transaction_table)
+    with open(files["transaction_table"], "at") as file:
+        file.write(transaction_table)
