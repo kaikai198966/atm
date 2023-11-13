@@ -27,7 +27,10 @@ while True:
         continue
 
     print("\n")
-    
+    import ui.user
+    ui.user.report_transaction(user_id=username)
+    exit(0)
+
     if user["type"] == "adm":
         import ui.admin
 
@@ -70,7 +73,7 @@ while True:
                 case "q":
                     exit(0)
                 case _:
-                    print("Invalid input.")
+                    print("Invalid input.\n")
                     continue
 
     if user["type"] == "usr":
@@ -111,4 +114,4 @@ while True:
                 case "n":
                     break
                 case _:
-                    print("Invalid input.")
+                    print("Invalid input.\n")

@@ -1,4 +1,5 @@
 # this menu will be displayed when the type of the user is admin ("adm")
+import time
 import controllers.api as api
 import utils
 
@@ -51,7 +52,7 @@ def make_deposit(user_id, amount=0):
 
 def make_withdrawal(user_id, amount=0):
     amount = input("Enter amount to Withdraw: ")
-    amount = int(amount)
+    amount = float(amount)
     if amount < 0:
         print("Withdrawal Amount must be greater than zero")
 
@@ -85,7 +86,7 @@ def report_transaction(user_id):
     date_range_end = input("Enter End Date (mm/dd/yyyy): ")
 
     account = api.get_account(user_id)
-    transaction = api.get_transactions(account["account_number"])
+    transactions = api.get_transactions(account["account_number"])
 
     prompt = (
         f"List of transactions for Account Number {account['account_number']}"
@@ -94,9 +95,50 @@ def report_transaction(user_id):
     print(prompt)
 
     prompt_header = (
-        "Transaction Date\t\t"
-        + "Transaction Time\t\t"
-        + "Transaction Amount\t\t"
+        "Transaction Date\t"
+        + "Transaction Time\t"
+        + "Transaction Amount\t"
         + "Running Balance\n"
     )
-    print(prompt_header, transaction)
+
+    print(prompt_header)
+
+    for transaction in transactions:
+        # TODO CONSULT KAI about the float problem
+
+        transaction_date = transaction["transaction_date"].split("_")[0]
+        transaction_time = transaction["transaction_date"].split("_")[1]
+
+        # TODO CONSULT KAI about the time options
+
+        running_balance = 0
+
+        transaction["transaction_amount"] = (
+            float(transaction["transaction_amount"])
+            if transaction["transaction_amount"]
+            else 0
+        )
+        if (
+            transaction["transaction_code"] == "dep"
+            or transaction["transaction_code"] == "new"
+        ):
+            running_balance += transaction["transaction_amount"]
+        if transaction["transaction_code"] == "wdr":
+            running_balance -= transaction["transaction_amount"]
+
+        if time.strptime(transaction_date, "%m/%d/%Y") < time.strptime(
+            date_range_start, "%m/%d/%Y"
+        ) or time.strptime(transaction_date, "%m/%d/%Y") > time.strptime(
+            date_range_start, "%m/%d/%Y"
+        ):
+            continue
+
+        print(
+            transaction_date
+            + "\t\t"
+            + transaction_time
+            + "\t\t"
+            + str(transaction["transaction_amount"])
+            + "\t\t\t"
+            + str(running_balance)
+        )
