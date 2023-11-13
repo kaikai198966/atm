@@ -25,8 +25,6 @@ while True:
     print("\n")
 
     if user["type"] == "adm":
-        import ui.admin
-
         while True:
             prompt = (
                 f"Welcome to ABC BANK\n"
@@ -165,8 +163,6 @@ while True:
                     continue
 
     if user["type"] == "usr":
-        import ui.user
-
         while True:
             prompt = (
                 f"Welcome to ABC BANK\n"
