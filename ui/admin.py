@@ -46,7 +46,7 @@ def create_admin_account():
                 "user_id": new_user_id,
                 "password": password,
                 "type": "adm",
-                "status": "Active",
+                "status": "A",
                 "created_date": utils.timestamp(),
             }
         )
@@ -80,7 +80,7 @@ def create_depositor_account():
                 "user_id": user_id,
                 "password": password,
                 "type": "usr",
-                "status": "Active",
+                "status": "A",
                 "created_date": timestamp,
             }
         )
