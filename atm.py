@@ -4,6 +4,7 @@ import initializers.check_files
 import env
 import utils  # may be omitted, also omit line 9
 
+# IT101 SPEC 1: List of text files need to maintain
 initializers.check_files.default()  # check if files exist, create files with default content if not
 
 utils.clear_console()  # NOTE: may be omitted

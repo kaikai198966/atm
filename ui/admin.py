@@ -48,7 +48,7 @@ def create_admin_account():
             {
                 "user_id": new_user_id,
                 "password": password,
-                "type": "adm",
+                "type": "adm", # IT101 SPEC 4: The administrator user has "adm" user type
                 "status": "A",
                 "created_date": utils.timestamp(),
             }
@@ -82,7 +82,7 @@ def create_depositor_account():
             {
                 "user_id": user_id,
                 "password": password,
-                "type": "usr",
+                "type": "usr", # IT101 SPEC 4: The depositor user has "us" user
                 "status": "A",
                 "created_date": timestamp,
             }

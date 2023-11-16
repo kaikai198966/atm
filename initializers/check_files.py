@@ -3,9 +3,12 @@ import env
 import controllers.fs as fs
 
 
+# IT101 SPEC 1: List of text files need to maintain
 def default():
     if not os.path.exists(env.files["users"]):
         print("Users file not found. Creating file with default content...")
+        # IT101 SPEC 2A: The users.txt contains one (1) record for administrator user account (python@gmail.com).
+        # IT101 SPEC 3: Pipe Separated Values
         admin_user = (
             env.master_account["username"]
             + "|"
