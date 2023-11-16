@@ -3,9 +3,8 @@ import time
 import controllers.api as api
 import utils
 
-
 def check_for_balance(user_id):
-    user = api.get_account(user_id=user_id)
+    user = api.get_account(user_id)
 
     user_id = user["user_id"]
     balance = user["outstanding_balance"]
